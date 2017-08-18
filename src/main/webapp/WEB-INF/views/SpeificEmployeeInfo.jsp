@@ -8,7 +8,8 @@
 <body>
 <h1>ID为${employee.id}的雇员详情</h1>
     姓名：<c:out value="${employee.name}" /><br/>
-    邮箱：<c:out value="${employee.email}" />
+    邮箱：<c:out value="${employee.email}" /><br/>
+    年龄：<c:out value="${employee.age}" />
 <br>
 <a href="./">返回</a>
 </body>
