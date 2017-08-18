@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import company.Employee;
+import company.StatisticResult;
 import company.data.EmployeeDao;
 
 @Controller
@@ -53,7 +54,7 @@ public class EmployeeController {
     @RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
     public String edit(@PathVariable int id, Model model) {
         Employee employee = employeeDao.findById(id);
-        model.addAttribute("FormFunc", "修改详情(id="+id+")");
+        model.addAttribute("FormFunc", "修改详情(id=" + id + ")");
         model.addAttribute(employee);
         return "EmployeeForm";
     }
@@ -69,5 +70,16 @@ public class EmployeeController {
     public String deleteExec(@PathVariable int id) {
         employeeDao.deleteById(id);
         return "redirect:../";
+    }
+
+    @RequestMapping(value = "/statistic", method = RequestMethod.GET)
+    public String statistic(Model model) {
+        List<StatisticResult> statisticList = null;
+        statisticList = employeeDao.getStatisticResult();
+        model.addAttribute("statisticList", statisticList);
+        // 不知道为什么这里必须加key（否则jsp里statisticList是空的）
+        // 但上面public String All(Model model)里的employeeList特么的就不用
+        // Employee和StatisticResult两个类区别只在于前者多了些标签，不知原因是否在这里
+        return "Statistic";
     }
 }
