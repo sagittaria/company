@@ -1,5 +1,16 @@
-﻿2017.08.18 统计各个年龄的人数
+﻿2017.08.19 关于URL最后的那个**反斜杠**
+因为controller里写的是
+```java
+@RequestMapping(value = "/", method = RequestMethod.GET)
+    public String All(Model model) {
+```
+所以你在地址栏里输入
+`http://localhost:8080/Company/employee`      ——会提示错误（页面显示404）
+和
+`http://localhost:8080/Company/employee/`     ——这样才行。。。
+效果是不同的
 
+2017.08.18 统计各个年龄的人数
 1.改数据库，EmployeeTbl表加age字段，Employee类也加个私有的 int age 成员
 2.另外再做个StatisticResult类，作为查询结果List的元素类型
 ```java

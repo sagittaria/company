@@ -24,7 +24,7 @@ public class EmployeeController {
         this.employeeDao = employeeDao;
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = {"/",""}, method = RequestMethod.GET) //可以接字符串数组
     public String All(Model model) {
         List<Employee> employeeList = employeeDao.findAll();
         model.addAttribute(employeeList);
